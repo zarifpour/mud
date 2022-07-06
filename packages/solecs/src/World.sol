@@ -50,6 +50,14 @@ contract World is IWorld {
     emit ComponentValueSet(componentAddressToId[component], component, entity, data);
   }
 
+  function emitComponentValueSet(
+    address component,
+    uint256 entity,
+    bytes calldata data
+  ) public requireComponentRegistered(component) {
+    emit ComponentValueSet(componentAddressToId[component], component, entity, data);
+  }
+
   function registerComponentValueRemoved(address component, uint256 entity)
     public
     requireComponentRegistered(component)

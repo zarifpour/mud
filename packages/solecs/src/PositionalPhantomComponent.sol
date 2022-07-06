@@ -31,8 +31,8 @@ abstract contract PositionalPhantomComponent is PhantomComponent {
 
   function posEmitValue(Vector2D128 memory origin, Vector2D128 memory delta) public {
     // TODO: optimize gas usage
-    for (int128 x = origin.x; x <= origin.x + delta.x; x++) {
-      for (int128 y = origin.y; y <= origin.y + delta.y; y++) {
+    for (int128 x = origin.x; x < origin.x + delta.x; x++) {
+      for (int128 y = origin.y; y < origin.y + delta.y; y++) {
         emitValue(Vector2D128(int128(x), int128(y)));
       }
     }

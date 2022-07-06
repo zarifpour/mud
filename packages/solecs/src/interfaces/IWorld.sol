@@ -24,6 +24,12 @@ interface IWorld {
     bytes calldata data
   ) external;
 
+  function emitComponentValueSet(
+    address component,
+    uint256 entity,
+    bytes calldata data
+  ) external;
+
   function registerComponentValueRemoved(address component, uint256 entity) external;
 
   function getNumEntities() external view returns (uint256);

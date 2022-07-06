@@ -57,6 +57,6 @@ abstract contract PhantomComponent is IComponent {
 
   function emitValue(uint256 entity) public {
     bytes memory value = getRawValue(entity);
-    IWorld(world).registerComponentValueSet(address(this), entity, value);
+    IWorld(world).emitComponentValueSet(address(this), entity, value);
   }
 }

@@ -17,6 +17,10 @@ contract Uint32PositionalPhantomComponent is PositionalPhantomComponent {
     values[0] = LibTypes.SchemaValue.UINT32;
   }
 
+  function set(uint256 entity, uint32 value) public {
+    set(entity, abi.encode(value));
+  }
+
   function getRawValue(uint256 entity) public view override returns (bytes memory) {
     return abi.encode(getValue(entity));
   }
