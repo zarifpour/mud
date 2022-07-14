@@ -65,6 +65,11 @@ export async function createNetworkLayer(config: NetworkLayerConfig) {
       { value: Type.Number },
       { id: "UnitType", metadata: { contractId: keccak256("ember.component.unitType") } }
     ),
+    CombatType: defineComponent(
+      world,
+      { value: Type.Number },
+      { id: "CombatType", metadata: { contractId: keccak256("ember.component.combatType") } }
+    ),
     StructureType: defineComponent(
       world,
       { value: Type.Number },
@@ -171,6 +176,7 @@ export async function createNetworkLayer(config: NetworkLayerConfig) {
     [keccak256("world.component.components")]: "Components",
     [keccak256("world.component.systems")]: "Systems",
     [keccak256("ember.component.unitType")]: "UnitType",
+    [keccak256("ember.component.combatType")]: "CombatType",
     [keccak256("ember.component.structureType")]: "StructureType",
     [keccak256("ember.component.itemType")]: "ItemType",
     [keccak256("ember.component.gameConfigComponent")]: "GameConfig",

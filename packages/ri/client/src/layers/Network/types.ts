@@ -58,3 +58,7 @@ export const TerrainTypeNames: Record<number, string> = {
   [TerrainTypes.Wall]: "Wall",
   [TerrainTypes.Tree]: "Tree",
 };
+
+export enum CombatTypes {
+  Sword,
+}

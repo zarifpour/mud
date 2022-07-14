@@ -3,6 +3,7 @@
     "UnitTypeComponent",
     "StructureTypeComponent",
     "ItemTypeComponent",
+    "CombatTypeComponent",
     "AttackComponent",
     "CapturableComponent",
     "EmberCrownComponent",
