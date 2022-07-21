@@ -10,6 +10,9 @@ import {
   HasValue,
   Not,
   runQuery,
+  setComponent,
+  removeComponent,
+  EntityID,
 } from "@latticexyz/recs";
 import { WorldCoord } from "../../../../../types";
 import { getPlayerEntity, isOwnedByCaller } from "@latticexyz/std-client";
@@ -19,7 +22,7 @@ export function createInputSystem(layer: PhaserLayer) {
     scenes: {
       Main: { input, maps },
     },
-    components: { HoverHighlight },
+    components: { HoverHighlight, HoverIcon },
     api: { highlightCoord },
     parentLayers: {
       network: {
@@ -37,28 +40,22 @@ export function createInputSystem(layer: PhaserLayer) {
         network: { connectedAddress },
       },
       headless: {
-        api: { moveEntity, attackEntity },
+        api: {
+          moveEntity,
+          attackEntity,
+          canGatherResource,
+          canTakeInventory,
+          canGiveInventory,
+          canAttack,
+          canEscapePortal,
+        },
       },
       local: {
         singletonEntity,
-        components: { Selected, LocalPosition },
+        components: { Selected, LocalPosition, PotentialPath },
       },
     },
   } = layer;
-
-  const getInventory = (entity: EntityIndex) => {
-    const capacity = getComponentValue(Inventory, entity)?.value;
-    if (capacity == null) return;
-
-    const items = getItems(entity);
-    const isFull = () => items.length >= capacity;
-
-    return {
-      capacity,
-      items,
-      isFull,
-    };
-  };
 
   const getSelectedEntity = () => [...runQuery([Has(Selected)])][0];
   const getHighlightedEntity = () => {
@@ -81,73 +78,31 @@ export function createInputSystem(layer: PhaserLayer) {
   };
 
   const attemptGatherResource = function (selectedEntity: EntityIndex, highlightedEntity: EntityIndex) {
-    const inventory = getComponentValue(Inventory, selectedEntity);
-    if (inventory == null) return false;
-
-    const resourceGenerator = getComponentValue(ResourceGenerator, highlightedEntity);
-    if (!resourceGenerator) return false;
-
+    if (!canGatherResource(highlightedEntity, selectedEntity)) return false;
     gatherResource(world.entities[highlightedEntity], world.entities[selectedEntity]);
     return true;
   };
 
-  const attemptTakeInventory = function (
-    selectedEntity: EntityIndex,
-    highlightedEntity: EntityIndex,
-    player: EntityIndex
-  ) {
-    if (!isOwnedByCaller(OwnedBy, selectedEntity, player, world.entityToIndex)) return false;
-    if (hasComponent(OwnedBy, highlightedEntity)) return false;
-
-    const highlightedItems = getItems(highlightedEntity);
-    if (highlightedItems.length === 0) return false;
-
-    const selectedInventory = getInventory(selectedEntity);
-    if (!selectedInventory || selectedInventory.isFull()) return false;
-
+  const attemptTakeInventory = function (selectedEntity: EntityIndex, highlightedEntity: EntityIndex) {
+    if (!canTakeInventory(highlightedEntity, selectedEntity)) return false;
     transferInventory(world.entities[highlightedEntity], world.entities[selectedEntity]);
     return true;
   };
 
-  const attemptGiveInventory = function (
-    selectedEntity: EntityIndex,
-    highlightedEntity: EntityIndex,
-    player: EntityIndex
-  ) {
-    if (
-      !isOwnedByCaller(OwnedBy, selectedEntity, player, world.entityToIndex) ||
-      !isOwnedByCaller(OwnedBy, highlightedEntity, player, world.entityToIndex)
-    )
-      return false;
-
-    const selectedItems = getItems(selectedEntity);
-    if (selectedItems.length === 0) return false;
-
-    const highlightedInventory = getInventory(highlightedEntity);
-    if (!highlightedInventory || highlightedInventory.isFull()) return false;
-
+  const attemptGiveInventory = function (selectedEntity: EntityIndex, highlightedEntity: EntityIndex) {
+    if (!canGiveInventory(selectedEntity, highlightedEntity)) return false;
     transferInventory(world.entities[selectedEntity], world.entities[highlightedEntity]);
     return true;
   };
 
   const attemptAttack = function (selectedEntity: EntityIndex, highlightedEntity: EntityIndex) {
-    const selectedEntityOwner = getComponentValue(OwnedBy, selectedEntity);
-    const highlightedEntityOwner = getComponentValue(OwnedBy, highlightedEntity);
-
-    if (!selectedEntityOwner) return false;
-    if (selectedEntityOwner.value === highlightedEntityOwner?.value) return false;
-
-    const health = getComponentValue(Health, highlightedEntity);
-    if (!health) return false;
-
+    if (!canAttack(selectedEntity, highlightedEntity)) return false;
     attackEntity(selectedEntity, highlightedEntity);
     return true;
   };
 
   const attemptEscapePortal = function (selectedEntity: EntityIndex, highlightedEntity: EntityIndex) {
-    const escapePortalValue = getComponentValue(EscapePortal, highlightedEntity);
-    if (!escapePortalValue) return false;
-
+    if (!canEscapePortal(selectedEntity, highlightedEntity)) return false;
     escapePortal(world.entities[selectedEntity], world.entities[highlightedEntity]);
     return true;
   };
@@ -158,18 +113,96 @@ export function createInputSystem(layer: PhaserLayer) {
 
     const selectedEntity = getSelectedEntity();
     if (selectedEntity == null) return;
+    if (!isOwnedByCaller(OwnedBy, selectedEntity, playerEntity, world.entityToIndex)) return;
 
     const highlightedEntity = getHighlightedEntity();
 
     if (highlightedEntity != null) {
       if (attemptEscapePortal(selectedEntity, highlightedEntity)) return;
       if (attemptGatherResource(selectedEntity, highlightedEntity)) return;
-      if (attemptTakeInventory(selectedEntity, highlightedEntity, playerEntity)) return;
-      if (attemptGiveInventory(selectedEntity, highlightedEntity, playerEntity)) return;
+      if (attemptTakeInventory(selectedEntity, highlightedEntity)) return;
       if (attemptAttack(selectedEntity, highlightedEntity)) return;
+
+      if (isOwnedByCaller(OwnedBy, highlightedEntity, playerEntity, world.entityToIndex)) {
+        if (attemptGiveInventory(selectedEntity, highlightedEntity)) return;
+      }
     }
 
     moveEntity(selectedEntity, clickedPosition);
+  };
+
+  const hoverUI = function (hoveredPosition: WorldCoord) {
+    const previousHoveredPosition = getComponentValue(HoverHighlight, singletonEntity);
+    if (
+      previousHoveredPosition &&
+      hoveredPosition.x === previousHoveredPosition.x &&
+      hoveredPosition.y === previousHoveredPosition.y
+    ) {
+      return;
+    }
+
+    highlightCoord(hoveredPosition);
+    const selectedEntity = getSelectedEntity();
+    if (!selectedEntity) {
+      setComponent(HoverIcon, singletonEntity, { icon: "default" });
+      return;
+    }
+
+    const hoverHighlight = getComponentValueStrict(HoverHighlight, singletonEntity);
+    const highlightedEntity = [
+      ...runQuery([HasValue(LocalPosition, { x: hoverHighlight.x, y: hoverHighlight.y }), Not(TerrainType)]),
+    ][0];
+    if (selectedEntity == highlightedEntity) return;
+
+    const playerEntity = world.entityToIndex.get(connectedAddress.get() as EntityID);
+
+    if (!playerEntity) return;
+    if (!hasComponent(Player, playerEntity) || hasComponent(Death, playerEntity)) return;
+    if (!isOwnedByCaller(OwnedBy, selectedEntity, playerEntity, world.entityToIndex)) return;
+
+    if (highlightedEntity != null) {
+      if (canEscapePortal(selectedEntity, highlightedEntity)) {
+        setComponent(HoverIcon, singletonEntity, { icon: "url(assets/move.png), pointer" });
+        return;
+      } else if (canGatherResource(highlightedEntity, selectedEntity)) {
+        setComponent(HoverIcon, singletonEntity, { icon: "url(assets/pickup.png), pointer" });
+        return;
+      } else if (canTakeInventory(highlightedEntity, selectedEntity)) {
+        setComponent(HoverIcon, singletonEntity, { icon: "url(assets/pickup.png), pointer" });
+        return;
+      } else if (canAttack(selectedEntity, highlightedEntity)) {
+        setComponent(HoverIcon, singletonEntity, { icon: "url(assets/attack.png), pointer" });
+        return;
+      }
+
+      if (isOwnedByCaller(OwnedBy, highlightedEntity, playerEntity, world.entityToIndex)) {
+        if (canGiveInventory(selectedEntity, highlightedEntity)) {
+          setComponent(HoverIcon, singletonEntity, { icon: "url(assets/transfer.png), pointer" });
+          return;
+        }
+      }
+    }
+
+    const paths = getComponentValue(PotentialPath, selectedEntity);
+    if (!paths || paths.x.length === 0) {
+      setComponent(HoverIcon, singletonEntity, { icon: "pointer" });
+      return;
+    }
+
+    let coordInPath = false;
+    for (let i = 0; i < paths.x.length; i++) {
+      if (paths.x[i] == hoveredPosition.x && paths.y[i] == hoveredPosition.y) {
+        coordInPath = true;
+        break;
+      }
+    }
+
+    if (!coordInPath) {
+      setComponent(HoverIcon, singletonEntity, { icon: "pointer" });
+      return;
+    }
+
+    setComponent(HoverIcon, singletonEntity, { icon: "url(assets/move.png), pointer" });
   };
 
   input.onKeyPress(
@@ -235,7 +268,7 @@ export function createInputSystem(layer: PhaserLayer) {
       map((pixel) => pixelToWorldCoord(maps.Main, pixel)) // Map pixel coord to tile coord
     )
     .subscribe((coord) => {
-      highlightCoord(coord);
+      hoverUI(coord);
     });
 
   input.rightClick$

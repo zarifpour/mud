@@ -15,6 +15,7 @@ import {
   createDrawPotentialPathSystem,
   createPlayerSpawnSystem,
   createDrawHealthSystem,
+  createDrawHoverIconSystem,
 } from "./systems";
 import { createPhaserEngine } from "@latticexyz/phaserx";
 import {
@@ -49,7 +50,8 @@ export async function createPhaserLayer(local: LocalLayer) {
     { color: Type.OptionalNumber, x: Type.OptionalNumber, y: Type.OptionalNumber },
     { id: "HoverHighlight" }
   );
-  const components = { Appearance, SpriteAnimation, Outline, HueTint, DevHighlight, HoverHighlight };
+  const HoverIcon = defineComponent(world, { icon: Type.String }, { id: "HoverIcon" });
+  const components = { Appearance, SpriteAnimation, Outline, HueTint, DevHighlight, HoverHighlight, HoverIcon };
 
   // Create phaser engine
   const { game, scenes, dispose: disposePhaser } = await createPhaserEngine(config);
@@ -99,6 +101,7 @@ export async function createPhaserLayer(local: LocalLayer) {
   createDrawPotentialPathSystem(layer);
   createPlayerSpawnSystem(layer);
   createDrawHealthSystem(layer);
+  createDrawHoverIconSystem(layer);
 
   return layer;
 }

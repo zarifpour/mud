@@ -26,7 +26,7 @@ export function createCurrentStaminaSystem(layer: HeadlessLayer) {
     actions: { withOptimisticUpdates },
   } = layer;
 
-  const OptimisticStamina = withOptimisticUpdates(Stamina);
+  const OptimisticStamina = Stamina;
 
   const setLocalStaminaToCurrentTurn = (entity: EntityIndex) => {
     const currentTurn = getCurrentTurn(layer.world, GameConfig, clock);
