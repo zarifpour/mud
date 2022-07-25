@@ -24,6 +24,7 @@ export enum StructureTypes {
   GoldShrine,
   EscapePortal,
   Container,
+  LuckGemShrine,
 }
 
 export const StructureTypeNames: Record<number, string> = {
@@ -31,16 +32,19 @@ export const StructureTypeNames: Record<number, string> = {
   [StructureTypes.GoldShrine]: "Gold Shrine",
   [StructureTypes.EscapePortal]: "Escape Portal",
   [StructureTypes.Container]: "Container",
+  [StructureTypes.LuckGemShrine]: "Luck Gem Shrine",
 };
 
 export enum ItemTypes {
   Gold,
   EmberCrown,
+  LuckGem,
 }
 
 export const ItemTypeNames: Record<number, string> = {
   [ItemTypes.Gold]: "Gold",
   [ItemTypes.EmberCrown]: "Ember Crown",
+  [ItemTypes.LuckGem]: "Luck Gem",
 };
 
 export enum TerrainTypes {

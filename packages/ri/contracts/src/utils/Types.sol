@@ -10,12 +10,14 @@ enum StructureTypes {
   Settlement,
   GoldShrine,
   EscapePortal,
-  Container
+  Container,
+  LuckGemShrine
 }
 
 enum ItemTypes {
   Gold,
-  EmberCrown
+  EmberCrown,
+  LuckGem
 }
 
 enum TerrainTypes {

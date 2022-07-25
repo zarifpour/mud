@@ -6,6 +6,7 @@ import { EmberCrownPrototype } from "../prototypes/EmberCrownPrototype.sol";
 import { EmberCrownContainerPrototype } from "../prototypes/EmberCrownContainerPrototype.sol";
 import { EscapePortalPrototype } from "../prototypes/EscapePortalPrototype.sol";
 import { GoldShrinePrototype } from "../prototypes/GoldShrinePrototype.sol";
+import { LuckGemShrinePrototype } from "../prototypes/LuckGemShrinePrototype.sol";
 import { GrassPrototype } from "../prototypes/GrassPrototype.sol";
 import { TreePrototype } from "../prototypes/TreePrototype.sol";
 import { WaterPrototype } from "../prototypes/WaterPrototype.sol";
@@ -25,6 +26,7 @@ contract Init2System is System {
     EmberCrownContainerPrototype(components, world);
     EscapePortalPrototype(components);
     GoldShrinePrototype(components);
+    LuckGemShrinePrototype(components);
     GrassPrototype(components);
     TreePrototype(components);
     WaterPrototype(components);

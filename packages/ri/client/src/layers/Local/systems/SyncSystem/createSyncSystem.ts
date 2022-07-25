@@ -1,6 +1,13 @@
-import { Has, defineSyncSystem, setComponent, defineComponentSystem } from "@latticexyz/recs";
+import {
+  Has,
+  defineSyncSystem,
+  setComponent,
+  defineComponentSystem,
+  getComponentValueStrict,
+  getComponentValue,
+} from "@latticexyz/recs";
 import { LocalLayer } from "../../types";
-import { UnitTypeNames, StructureTypeNames, ItemTypeNames } from "../../../Network/types";
+import { UnitTypeNames, StructureTypeNames, ItemTypeNames, ItemTypes } from "../../../Network/types";
 
 /**
  * The Sync system handles adding Local layer components to entites based on components they have on parent layers
@@ -10,7 +17,7 @@ export function createSyncSystem(layer: LocalLayer) {
     world,
     parentLayers: {
       network: {
-        components: { ItemType, UnitType, StructureType, Movable },
+        components: { ItemType, UnitType, StructureType, Movable, LuckGem },
       },
     },
     components: { MoveSpeed, Selectable, Name },
@@ -69,11 +76,19 @@ export function createSyncSystem(layer: LocalLayer) {
   defineComponentSystem(world, ItemType, ({ entity, value }) => {
     const [newValue] = value;
     const type = newValue?.value;
-    if (type == null) return;
+    if (type == null || type == ItemTypes.LuckGem) return;
 
     let name = "Unknown";
     if (ItemTypeNames[type]) name = ItemTypeNames[type];
 
+    setComponent(Name, entity, { value: name });
+  });
+
+  defineComponentSystem(world, LuckGem, ({ entity, value }) => {
+    const roll = value[0];
+    if (roll == null) return;
+
+    const name = `${ItemTypeNames[ItemTypes.LuckGem]}: ${roll.value}`;
     setComponent(Name, entity, { value: name });
   });
 }

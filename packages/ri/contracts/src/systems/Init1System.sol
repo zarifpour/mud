@@ -3,6 +3,7 @@ pragma solidity >=0.8.0;
 import "solecs/System.sol";
 
 import { GoldPrototype } from "../prototypes/GoldPrototype.sol";
+import { LuckGemPrototype } from "../prototypes/LuckGemPrototype.sol";
 import { SoldierPrototype } from "../prototypes/SoldierPrototype.sol";
 import { DonkeyPrototype } from "../prototypes/DonkeyPrototype.sol";
 import { GuardPrototype } from "../prototypes/GuardPrototype.sol";
@@ -21,6 +22,7 @@ contract Init1System is System {
   function execute(bytes memory) public returns (bytes memory) {
     // Initialize Prototypes
     GoldPrototype(components);
+    LuckGemPrototype(components);
     SoldierPrototype(components);
     DonkeyPrototype(components);
     GuardPrototype(components);

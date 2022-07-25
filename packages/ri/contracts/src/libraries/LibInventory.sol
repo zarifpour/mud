@@ -90,12 +90,13 @@ library LibInventory {
     IWorld world,
     uint256 receiverEntity,
     uint256 prototypeId
-  ) internal {
+  ) internal returns (uint256) {
     requireHasSpace(components, receiverEntity);
 
     uint256 itemEntity = LibPrototype.copyPrototype(components, world, prototypeId);
     OwnedByComponent ownedByComponent = OwnedByComponent(getAddressById(components, OwnedByComponentID));
     ownedByComponent.set(itemEntity, receiverEntity);
+    return itemEntity;
   }
 
   function createContainer(

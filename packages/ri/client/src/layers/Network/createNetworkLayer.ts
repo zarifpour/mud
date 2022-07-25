@@ -158,6 +158,21 @@ export async function createNetworkLayer(config: NetworkLayerConfig) {
       { value: Type.Boolean },
       { id: "Winner", metadata: { contractId: keccak256("mudwar.component.Winner") } }
     ),
+    TurnLuck: defineComponent(
+      world,
+      { currentTurn: Type.Number, luckHash: Type.String },
+      { id: "TurnLuck", metadata: { contractId: keccak256("mudwar.component.TurnLuck") } }
+    ),
+    LuckGem: defineComponent(
+      world,
+      { value: Type.Number },
+      { id: "LuckGem", metadata: { contractId: keccak256("mudwar.component.LuckGem") } }
+    ),
+    Commit: defineComponent(
+      world,
+      { value: Type.Number },
+      { id: "Commit", metadata: { contractId: keccak256("mudwar.component.Commit") } }
+    ),
   };
 
   // Define mappings between contract and client components
@@ -187,6 +202,9 @@ export async function createNetworkLayer(config: NetworkLayerConfig) {
     [keccak256("mudwar.component.ResourceGenerator")]: "ResourceGenerator",
     [keccak256("mudwar.component.EscapePortal")]: "EscapePortal",
     [keccak256("mudwar.component.Winner")]: "Winner",
+    [keccak256("mudwar.component.TurnLuck")]: "TurnLuck",
+    [keccak256("mudwar.component.Commit")]: "Commit",
+    [keccak256("mudwar.component.LuckGem")]: "LuckGem",
   };
 
   const contractConfig: SetupContractConfig = {

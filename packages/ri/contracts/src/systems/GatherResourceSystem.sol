@@ -9,6 +9,7 @@ import { LibECS } from "../libraries/LibECS.sol";
 import { LibUtils } from "../libraries/LibUtils.sol";
 import { LibStamina } from "../libraries/LibStamina.sol";
 import { LibInventory } from "../libraries/LibInventory.sol";
+import { LibLuck } from "../libraries/LibLuck.sol";
 
 import { PositionComponent, ID as PositionComponentID, Coord } from "../components/PositionComponent.sol";
 import { StaminaComponent, ID as StaminaComponentID } from "../components/StaminaComponent.sol";
@@ -19,7 +20,7 @@ import { UntraversableComponent, ID as UntraversableComponentID } from "../compo
 import { OwnedByComponent, ID as OwnedByComponentID } from "../components/OwnedByComponent.sol";
 import { ResourceGeneratorComponent, ID as ResourceGeneratorComponentID } from "../components/ResourceGeneratorComponent.sol";
 
-import { ID as GoldID } from "../prototypes/GoldPrototype.sol";
+import { ID as LuckGemID } from "../prototypes/LuckGemPrototype.sol";
 
 uint256 constant ID = uint256(keccak256("mudwar.system.GatherResource"));
 
@@ -42,7 +43,16 @@ contract GatherResourceSystem is System {
 
     LibStamina.modifyStamina(components, generator, -2);
     LibStamina.modifyStamina(components, gatherer, -1);
-    LibInventory.spawnItem(components, world, gatherer, GoldID);
+
+    uint256 resourceID = ResourceGeneratorComponent(getAddressById(components, ResourceGeneratorComponentID)).getValue(
+      generator
+    );
+
+    uint256 item = LibInventory.spawnItem(components, world, gatherer, resourceID);
+
+    if (resourceID == LuckGemID) {
+      LibLuck.generateLuckGemValue(components, world, generator, item);
+    }
   }
 
   function requirementTyped(uint256 generator, uint256 gatherer) public view returns (bytes memory) {

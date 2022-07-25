@@ -89,6 +89,14 @@ export const config = {
           assetKey: Assets.MainAtlas,
           frame: "sprites/resources/gold.png",
         },
+        [Sprites.LuckGem]: {
+          assetKey: Assets.MainAtlas,
+          frame: "sprites/resources/gems.png",
+        },
+        [Sprites.LuckGemShrine]: {
+          assetKey: Assets.MainAtlas,
+          frame: "sprites/resources/gems.png",
+        },
         [Sprites.EscapePortal]: {
           assetKey: Assets.MainAtlas,
           frame: "sprites/resources/wood.png",
