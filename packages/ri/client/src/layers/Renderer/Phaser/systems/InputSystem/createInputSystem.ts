@@ -157,7 +157,7 @@ export function createInputSystem(layer: PhaserLayer) {
     const playerEntity = world.entityToIndex.get(connectedAddress.get() as EntityID);
 
     if (!playerEntity) return;
-    if (!hasComponent(Player, playerEntity) || hasComponent(Death, playerEntity)) return;
+    if (!hasComponent(Player, playerEntity)) return;
     if (!isOwnedByCaller(OwnedBy, selectedEntity, playerEntity, world.entityToIndex)) return;
 
     if (highlightedEntity != null) {
