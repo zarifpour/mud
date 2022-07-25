@@ -55,62 +55,16 @@ library LibLuck {
 
     uint32 commit = commitComponent.getValue(shrineEntity);
     console.log("commit value", commit);
+    uint32 roll = 5;
 
     if (commit != 0 || uint32(block.number) - commit > 255) {
-      uint256 rollhash1 = uint256(blockhash(commit));
-      uint256 rollhash2 = uint256(keccak256(abi.encode(rollhash1)));
-      uint256 rollhash3 = uint256(keccak256(abi.encode(rollhash2)));
-      uint32 roll = uint32((rollhash1 % 5) + (rollhash2 % 5) + (rollhash3 % 5) + 3);
-      console.log("roll value", roll);
-
-      LuckGemComponent(getAddressById(components, LuckGemComponentID)).set(luckGemEntity, roll);
-      console.log("set roll component", roll);
-    } else {
-      LuckGemComponent(getAddressById(components, LuckGemComponentID)).set(luckGemEntity, 3);
+      roll = (uint32(uint256(blockhash(commit))) % 20) + 1;
     }
+
+    LuckGemComponent(getAddressById(components, LuckGemComponentID)).set(luckGemEntity, roll);
+    console.log("set roll value", roll);
 
     commitComponent.set(shrineEntity, uint32(block.number));
     console.log("set commit component", uint32(block.number));
   }
 }
-// function getTurnBlock(IUint256Component components) internal returns (uint256) {
-//   GameConfig memory gameConfig = GameConfigComponent(getAddressById(components, GameConfigComponentID)).getValue(
-//     GodID
-//   );
-
-//   // console.log("block number", block.number);
-//   // console.log("game start block", gameConfig.startBlock);
-//   // uint256 blocksSinceGameStart = block.number - gameConfig.startBlock;
-//   // console.log("blocks since game start", blocksSinceGameStart);
-//   // uint256 currentBlock = blocksSinceGameStart / gameConfig.turnLength;
-//   // console.log("current block turn", currentBlock);
-//   // console.log("blocks since turn started", blocksSinceGameStart - currentBlock * gameConfig.turnLength);
-//   // uint256 secblock = blocksSinceGameStart - currentBlock * gameConfig.turnLength;
-//   // uint256 turnBlock = block.number - secblock;
-//   // console.log("turn block", turnBlock);
-
-//   // console.log("block timestamp", block.timestamp);
-//   // console.log("game starttime", gameConfig.startTime);
-//   // uint256 secondsSinceGameStart = block.timestamp - gameConfig.startTime;
-//   // console.log("seconds since game start", secondsSinceGameStart);
-//   // uint256 currentTurn = secondsSinceGameStart / gameConfig.turnLength;
-//   // console.log("current time turn", currentTurn);
-//   // console.log("seconds since turn started", secondsSinceGameStart - currentTurn * gameConfig.turnLength);
-//   // uint256 sec = secondsSinceGameStart - currentTurn * gameConfig.turnLength;
-//   // uint256 turntime = block.number - sec;
-//   // console.log("turn time", turntime);
-//   return turnBlock;
-// }
-// }
-
-// console.log("block timestamp", block.timestamp);
-// console.log("game starttime", gameConfig.startBlock);
-// uint256 secondsSinceGameStart = block.timestamp - gameConfig.startTime;
-// console.log("seconds since game start", secondsSinceGameStart);
-// uint256 currentTurn = secondsSinceGameStart / gameConfig.turnLength;
-// console.log("current turn", currentTurn);
-// console.log("seconds since turn started", secondsSinceGameStart - currentTurn * gameConfig.turnLength);
-// uint256 sec = secondsSinceGameStart - currentTurn * gameConfig.turnLength;
-// uint256 turnBlock = block.number - sec;
-// console.log("turn block", turnBlock);
-// return turnBlock;
