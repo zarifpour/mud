@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/static/css/main.22a12d5e.css",
-    "main.js": "/static/js/main.cbedd79b.js",
+    "main.js": "/static/js/main.8ff5b777.js",
     "static/media/autonomous-worlds.md": "/static/media/autonomous-worlds.1675e6ceeff649db3124.md",
     "static/media/ecs.md": "/static/media/ecs.79544c2a6bcb5f48b24d.md",
     "index.html": "/index.html",
     "static/media/index.md": "/static/media/index.573f6789b8d92da93e74.md",
     "main.22a12d5e.css.map": "/static/css/main.22a12d5e.css.map",
-    "main.cbedd79b.js.map": "/static/js/main.cbedd79b.js.map"
+    "main.8ff5b777.js.map": "/static/js/main.8ff5b777.js.map"
   },
   "entrypoints": [
     "static/css/main.22a12d5e.css",
-    "static/js/main.cbedd79b.js"
+    "static/js/main.8ff5b777.js"
   ]
 }
