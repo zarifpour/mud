@@ -1,6 +1,6 @@
 import { JsonRpcProvider } from "@ethersproject/providers";
 import { EntityID, ComponentValue } from "@latticexyz/recs";
-import { to256BitString, awaitPromise, range, sleep } from "@latticexyz/utils";
+import { to256BitString, awaitPromise, range } from "@latticexyz/utils";
 import { GrpcWebFetchTransport } from "@protobuf-ts/grpcweb-transport";
 import { BytesLike, Contract, BigNumber } from "ethers";
 import { Observable, map, concatMap, of } from "rxjs";
@@ -168,7 +168,7 @@ export function createFetchWorldEventsInBlockRange(
       };
 
       const component = to256BitString(BigNumber.from(rawComponentId).toHexString());
-      const entity = to256BitString(BigNumber.from(entityId).toHexString()) as EntityID;
+      const entity = BigNumber.from(entityId).toHexString() as EntityID;
       const blockNumber = to;
 
       const ecsEvent = {

@@ -103,7 +103,7 @@ export interface ECSStateRequestAtBlock {
   /**
    * @generated from protobuf field: uint64 blockNumber = 1;
    */
-  blockNumber: bigint;
+  blockNumber: number;
 }
 /**
  * The request message for all worlds.
@@ -458,7 +458,7 @@ class ECSStateRequestAtBlock$Type extends MessageType<ECSStateRequestAtBlock> {
     ]);
   }
   create(value?: PartialMessage<ECSStateRequestAtBlock>): ECSStateRequestAtBlock {
-    const message = { blockNumber: 0n };
+    const message = { blockNumber: 0 };
     globalThis.Object.defineProperty(message, MESSAGE_TYPE, { enumerable: false, value: this });
     if (value !== undefined) reflectionMergePartial<ECSStateRequestAtBlock>(this, message, value);
     return message;
@@ -475,7 +475,7 @@ class ECSStateRequestAtBlock$Type extends MessageType<ECSStateRequestAtBlock> {
       let [fieldNo, wireType] = reader.tag();
       switch (fieldNo) {
         case /* uint64 blockNumber */ 1:
-          message.blockNumber = reader.uint64().toBigInt();
+          message.blockNumber = reader.uint64().toNumber();
           break;
         default:
           let u = options.readUnknownField;
@@ -493,7 +493,7 @@ class ECSStateRequestAtBlock$Type extends MessageType<ECSStateRequestAtBlock> {
     options: BinaryWriteOptions
   ): IBinaryWriter {
     /* uint64 blockNumber = 1; */
-    if (message.blockNumber !== 0n) writer.tag(1, WireType.Varint).uint64(message.blockNumber);
+    if (message.blockNumber !== 0) writer.tag(1, WireType.Varint).uint64(message.blockNumber);
     let u = options.writeUnknownFields;
     if (u !== false) (u == true ? UnknownFieldHandler.onWrite : u)(this.typeName, message, writer);
     return writer;
