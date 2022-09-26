@@ -140,8 +140,14 @@
 <pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getEntitiesWithValue</span><span class="hl-1">(</span><span class="hl-4">struct</span><span class="hl-3"> </span><span class="hl-0">Coord</span><span class="hl-3"> </span><span class="hl-4">coord</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-1">[])</span>
 </code></pre>
 
-<a href="#int32component" id="int32component" style="color: inherit; text-decoration: none;">
-  <h2>Int32Component</h2>
+<a href="#functionselector" id="functionselector" style="color: inherit; text-decoration: none;">
+  <h2>FunctionSelector</h2>
+</a>
+<pre><code class="language-solidity"><span class="hl-0">struct</span><span class="hl-3"> FunctionSelector </span><span class="hl-1">{</span><br/><span class="hl-3">  </span><span class="hl-2">address</span><span class="hl-3"> contr</span><span class="hl-0">;</span><br/><span class="hl-3">  </span><span class="hl-2">bytes4</span><span class="hl-3"> func</span><span class="hl-0">;</span><br/><span class="hl-1">}</span>
+</code></pre>
+
+<a href="#functioncomponent" id="functioncomponent" style="color: inherit; text-decoration: none;">
+  <h2>FunctionComponent</h2>
 </a>
 
 <a href="#constructor-3" id="constructor-3" style="color: inherit; text-decoration: none;">
@@ -160,23 +166,29 @@
 <a href="#set-3" id="set-3" style="color: inherit; text-decoration: none;">
   <h3>set</h3>
 </a>
-<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">set</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">,</span><span class="hl-3"> </span><span class="hl-2">int32</span><span class="hl-3"> </span><span class="hl-4">value</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span>
+<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">set</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">,</span><span class="hl-3"> </span><span class="hl-4">struct</span><span class="hl-3"> </span><span class="hl-0">FunctionSelector</span><span class="hl-3"> </span><span class="hl-4">value</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span>
 </code></pre>
 
 <a href="#getvalue-3" id="getvalue-3" style="color: inherit; text-decoration: none;">
   <h3>getValue</h3>
 </a>
-<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getValue</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-2">int32</span><span class="hl-1">)</span>
+<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getValue</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-4">struct</span><span class="hl-3"> </span><span class="hl-0">FunctionSelector</span><span class="hl-1">)</span>
 </code></pre>
 
 <a href="#getentitieswithvalue-3" id="getentitieswithvalue-3" style="color: inherit; text-decoration: none;">
   <h3>getEntitiesWithValue</h3>
 </a>
-<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getEntitiesWithValue</span><span class="hl-1">(</span><span class="hl-2">int32</span><span class="hl-3"> </span><span class="hl-4">value</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-1">[])</span>
+<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getEntitiesWithValue</span><span class="hl-1">(</span><span class="hl-4">struct</span><span class="hl-3"> </span><span class="hl-0">FunctionSelector</span><span class="hl-3"> </span><span class="hl-4">value</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-1">[])</span>
 </code></pre>
 
-<a href="#stringarraycomponent" id="stringarraycomponent" style="color: inherit; text-decoration: none;">
-  <h2>StringArrayComponent</h2>
+<a href="#freefunction" id="freefunction" style="color: inherit; text-decoration: none;">
+  <h2>freeFunction</h2>
+</a>
+<pre><code class="language-solidity"><span class="hl-3">freeFunction </span><span class="hl-5">staticcallFunctionSelector</span><span class="hl-1">(</span><span class="hl-0">struct</span><span class="hl-3"> FunctionSelector functionSelector</span><span class="hl-1">,</span><span class="hl-3"> </span><span class="hl-2">bytes</span><span class="hl-3"> args</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">internal</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-2">bool</span><span class="hl-1">,</span><span class="hl-3"> </span><span class="hl-2">bytes</span><span class="hl-1">)</span>
+</code></pre>
+
+<a href="#int32component" id="int32component" style="color: inherit; text-decoration: none;">
+  <h2>Int32Component</h2>
 </a>
 
 <a href="#constructor-4" id="constructor-4" style="color: inherit; text-decoration: none;">
@@ -195,23 +207,23 @@
 <a href="#set-4" id="set-4" style="color: inherit; text-decoration: none;">
   <h3>set</h3>
 </a>
-<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">set</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">,</span><span class="hl-3"> </span><span class="hl-2">string</span><span class="hl-1">[]</span><span class="hl-3"> </span><span class="hl-4">value</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span>
+<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">set</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">,</span><span class="hl-3"> </span><span class="hl-2">int32</span><span class="hl-3"> </span><span class="hl-4">value</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span>
 </code></pre>
 
 <a href="#getvalue-4" id="getvalue-4" style="color: inherit; text-decoration: none;">
   <h3>getValue</h3>
 </a>
-<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getValue</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-2">string</span><span class="hl-1">[])</span>
+<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getValue</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-2">int32</span><span class="hl-1">)</span>
 </code></pre>
 
 <a href="#getentitieswithvalue-4" id="getentitieswithvalue-4" style="color: inherit; text-decoration: none;">
   <h3>getEntitiesWithValue</h3>
 </a>
-<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getEntitiesWithValue</span><span class="hl-1">(</span><span class="hl-2">string</span><span class="hl-1">[]</span><span class="hl-3"> </span><span class="hl-4">value</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-1">[])</span>
+<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getEntitiesWithValue</span><span class="hl-1">(</span><span class="hl-2">int32</span><span class="hl-3"> </span><span class="hl-4">value</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-1">[])</span>
 </code></pre>
 
-<a href="#stringcomponent" id="stringcomponent" style="color: inherit; text-decoration: none;">
-  <h2>StringComponent</h2>
+<a href="#stringarraycomponent" id="stringarraycomponent" style="color: inherit; text-decoration: none;">
+  <h2>StringArrayComponent</h2>
 </a>
 
 <a href="#constructor-5" id="constructor-5" style="color: inherit; text-decoration: none;">
@@ -230,23 +242,23 @@
 <a href="#set-5" id="set-5" style="color: inherit; text-decoration: none;">
   <h3>set</h3>
 </a>
-<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">set</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">,</span><span class="hl-3"> </span><span class="hl-2">string</span><span class="hl-3"> </span><span class="hl-4">value</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span>
+<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">set</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">,</span><span class="hl-3"> </span><span class="hl-2">string</span><span class="hl-1">[]</span><span class="hl-3"> </span><span class="hl-4">value</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span>
 </code></pre>
 
 <a href="#getvalue-5" id="getvalue-5" style="color: inherit; text-decoration: none;">
   <h3>getValue</h3>
 </a>
-<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getValue</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-2">string</span><span class="hl-1">)</span>
+<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getValue</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-2">string</span><span class="hl-1">[])</span>
 </code></pre>
 
 <a href="#getentitieswithvalue-5" id="getentitieswithvalue-5" style="color: inherit; text-decoration: none;">
   <h3>getEntitiesWithValue</h3>
 </a>
-<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getEntitiesWithValue</span><span class="hl-1">(</span><span class="hl-2">string</span><span class="hl-3"> </span><span class="hl-4">value</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-1">[])</span>
+<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getEntitiesWithValue</span><span class="hl-1">(</span><span class="hl-2">string</span><span class="hl-1">[]</span><span class="hl-3"> </span><span class="hl-4">value</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-1">[])</span>
 </code></pre>
 
-<a href="#uint256arraycomponent" id="uint256arraycomponent" style="color: inherit; text-decoration: none;">
-  <h2>Uint256ArrayComponent</h2>
+<a href="#stringcomponent" id="stringcomponent" style="color: inherit; text-decoration: none;">
+  <h2>StringComponent</h2>
 </a>
 
 <a href="#constructor-6" id="constructor-6" style="color: inherit; text-decoration: none;">
@@ -265,23 +277,23 @@
 <a href="#set-6" id="set-6" style="color: inherit; text-decoration: none;">
   <h3>set</h3>
 </a>
-<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">set</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">,</span><span class="hl-3"> </span><span class="hl-2">uint256</span><span class="hl-1">[]</span><span class="hl-3"> </span><span class="hl-4">value</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span>
+<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">set</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">,</span><span class="hl-3"> </span><span class="hl-2">string</span><span class="hl-3"> </span><span class="hl-4">value</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span>
 </code></pre>
 
 <a href="#getvalue-6" id="getvalue-6" style="color: inherit; text-decoration: none;">
   <h3>getValue</h3>
 </a>
-<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getValue</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-1">[])</span>
+<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getValue</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-2">string</span><span class="hl-1">)</span>
 </code></pre>
 
 <a href="#getentitieswithvalue-6" id="getentitieswithvalue-6" style="color: inherit; text-decoration: none;">
   <h3>getEntitiesWithValue</h3>
 </a>
-<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getEntitiesWithValue</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">value</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-1">[])</span>
+<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getEntitiesWithValue</span><span class="hl-1">(</span><span class="hl-2">string</span><span class="hl-3"> </span><span class="hl-4">value</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-1">[])</span>
 </code></pre>
 
-<a href="#uint32arraycomponent" id="uint32arraycomponent" style="color: inherit; text-decoration: none;">
-  <h2>Uint32ArrayComponent</h2>
+<a href="#uint256arraycomponent" id="uint256arraycomponent" style="color: inherit; text-decoration: none;">
+  <h2>Uint256ArrayComponent</h2>
 </a>
 
 <a href="#constructor-7" id="constructor-7" style="color: inherit; text-decoration: none;">
@@ -300,23 +312,23 @@
 <a href="#set-7" id="set-7" style="color: inherit; text-decoration: none;">
   <h3>set</h3>
 </a>
-<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">set</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">,</span><span class="hl-3"> </span><span class="hl-2">uint32</span><span class="hl-1">[]</span><span class="hl-3"> </span><span class="hl-4">value</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span>
+<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">set</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">,</span><span class="hl-3"> </span><span class="hl-2">uint256</span><span class="hl-1">[]</span><span class="hl-3"> </span><span class="hl-4">value</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span>
 </code></pre>
 
 <a href="#getvalue-7" id="getvalue-7" style="color: inherit; text-decoration: none;">
   <h3>getValue</h3>
 </a>
-<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getValue</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-2">uint32</span><span class="hl-1">[])</span>
+<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getValue</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-1">[])</span>
 </code></pre>
 
 <a href="#getentitieswithvalue-7" id="getentitieswithvalue-7" style="color: inherit; text-decoration: none;">
   <h3>getEntitiesWithValue</h3>
 </a>
-<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getEntitiesWithValue</span><span class="hl-1">(</span><span class="hl-2">uint32</span><span class="hl-1">[]</span><span class="hl-3"> </span><span class="hl-4">value</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-1">[])</span>
+<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getEntitiesWithValue</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">value</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-1">[])</span>
 </code></pre>
 
-<a href="#uint32component" id="uint32component" style="color: inherit; text-decoration: none;">
-  <h2>Uint32Component</h2>
+<a href="#uint32arraycomponent" id="uint32arraycomponent" style="color: inherit; text-decoration: none;">
+  <h2>Uint32ArrayComponent</h2>
 </a>
 
 <a href="#constructor-8" id="constructor-8" style="color: inherit; text-decoration: none;">
@@ -335,29 +347,23 @@
 <a href="#set-8" id="set-8" style="color: inherit; text-decoration: none;">
   <h3>set</h3>
 </a>
-<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">set</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">,</span><span class="hl-3"> </span><span class="hl-2">uint32</span><span class="hl-3"> </span><span class="hl-4">value</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span>
+<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">set</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">,</span><span class="hl-3"> </span><span class="hl-2">uint32</span><span class="hl-1">[]</span><span class="hl-3"> </span><span class="hl-4">value</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span>
 </code></pre>
 
 <a href="#getvalue-8" id="getvalue-8" style="color: inherit; text-decoration: none;">
   <h3>getValue</h3>
 </a>
-<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getValue</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-2">uint32</span><span class="hl-1">)</span>
+<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getValue</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-2">uint32</span><span class="hl-1">[])</span>
 </code></pre>
 
 <a href="#getentitieswithvalue-8" id="getentitieswithvalue-8" style="color: inherit; text-decoration: none;">
   <h3>getEntitiesWithValue</h3>
 </a>
-<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getEntitiesWithValue</span><span class="hl-1">(</span><span class="hl-2">uint32</span><span class="hl-3"> </span><span class="hl-4">value</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-1">[])</span>
+<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getEntitiesWithValue</span><span class="hl-1">(</span><span class="hl-2">uint32</span><span class="hl-1">[]</span><span class="hl-3"> </span><span class="hl-4">value</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-1">[])</span>
 </code></pre>
 
-<a href="#voxelcoord" id="voxelcoord" style="color: inherit; text-decoration: none;">
-  <h2>VoxelCoord</h2>
-</a>
-<pre><code class="language-solidity"><span class="hl-0">struct</span><span class="hl-3"> VoxelCoord </span><span class="hl-1">{</span><br/><span class="hl-3">  </span><span class="hl-2">int32</span><span class="hl-3"> x</span><span class="hl-0">;</span><br/><span class="hl-3">  </span><span class="hl-2">int32</span><span class="hl-3"> y</span><span class="hl-0">;</span><br/><span class="hl-3">  </span><span class="hl-2">int32</span><span class="hl-3"> z</span><span class="hl-0">;</span><br/><span class="hl-1">}</span>
-</code></pre>
-
-<a href="#voxelcoordcomponent" id="voxelcoordcomponent" style="color: inherit; text-decoration: none;">
-  <h2>VoxelCoordComponent</h2>
+<a href="#uint32component" id="uint32component" style="color: inherit; text-decoration: none;">
+  <h2>Uint32Component</h2>
 </a>
 
 <a href="#constructor-9" id="constructor-9" style="color: inherit; text-decoration: none;">
@@ -376,16 +382,57 @@
 <a href="#set-9" id="set-9" style="color: inherit; text-decoration: none;">
   <h3>set</h3>
 </a>
-<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">set</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">,</span><span class="hl-3"> </span><span class="hl-4">struct</span><span class="hl-3"> </span><span class="hl-0">VoxelCoord</span><span class="hl-3"> </span><span class="hl-4">value</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span>
+<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">set</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">,</span><span class="hl-3"> </span><span class="hl-2">uint32</span><span class="hl-3"> </span><span class="hl-4">value</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span>
 </code></pre>
 
 <a href="#getvalue-9" id="getvalue-9" style="color: inherit; text-decoration: none;">
   <h3>getValue</h3>
 </a>
-<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getValue</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-4">struct</span><span class="hl-3"> </span><span class="hl-0">VoxelCoord</span><span class="hl-1">)</span>
+<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getValue</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-2">uint32</span><span class="hl-1">)</span>
 </code></pre>
 
 <a href="#getentitieswithvalue-9" id="getentitieswithvalue-9" style="color: inherit; text-decoration: none;">
+  <h3>getEntitiesWithValue</h3>
+</a>
+<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getEntitiesWithValue</span><span class="hl-1">(</span><span class="hl-2">uint32</span><span class="hl-3"> </span><span class="hl-4">value</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-1">[])</span>
+</code></pre>
+
+<a href="#voxelcoord" id="voxelcoord" style="color: inherit; text-decoration: none;">
+  <h2>VoxelCoord</h2>
+</a>
+<pre><code class="language-solidity"><span class="hl-0">struct</span><span class="hl-3"> VoxelCoord </span><span class="hl-1">{</span><br/><span class="hl-3">  </span><span class="hl-2">int32</span><span class="hl-3"> x</span><span class="hl-0">;</span><br/><span class="hl-3">  </span><span class="hl-2">int32</span><span class="hl-3"> y</span><span class="hl-0">;</span><br/><span class="hl-3">  </span><span class="hl-2">int32</span><span class="hl-3"> z</span><span class="hl-0">;</span><br/><span class="hl-1">}</span>
+</code></pre>
+
+<a href="#voxelcoordcomponent" id="voxelcoordcomponent" style="color: inherit; text-decoration: none;">
+  <h2>VoxelCoordComponent</h2>
+</a>
+
+<a href="#constructor-10" id="constructor-10" style="color: inherit; text-decoration: none;">
+  <h3>constructor</h3>
+</a>
+<pre><code class="language-solidity"><span class="hl-0">constructor</span><span class="hl-1">(</span><span class="hl-2">address</span><span class="hl-3"> </span><span class="hl-4">world</span><span class="hl-1">,</span><span class="hl-3"> </span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">id</span><span class="hl-3">) </span><span class="hl-0">public</span>
+</code></pre>
+
+<a href="#getschema-10" id="getschema-10" style="color: inherit; text-decoration: none;">
+  <h3>getSchema</h3>
+</a>
+<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getSchema</span><span class="hl-1">()</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">pure</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-2">string</span><span class="hl-1">[]</span><span class="hl-3"> </span><span class="hl-4">keys</span><span class="hl-1">,</span><span class="hl-3"> </span><span class="hl-4">enum</span><span class="hl-3"> </span><span class="hl-0">LibTypes</span><span class="hl-3">.SchemaValue</span><span class="hl-1">[]</span><span class="hl-3"> </span><span class="hl-4">values</span><span class="hl-1">)</span>
+</code></pre>
+<p>Return the keys and value types of the schema of this component.</p>
+
+<a href="#set-10" id="set-10" style="color: inherit; text-decoration: none;">
+  <h3>set</h3>
+</a>
+<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">set</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">,</span><span class="hl-3"> </span><span class="hl-4">struct</span><span class="hl-3"> </span><span class="hl-0">VoxelCoord</span><span class="hl-3"> </span><span class="hl-4">value</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span>
+</code></pre>
+
+<a href="#getvalue-10" id="getvalue-10" style="color: inherit; text-decoration: none;">
+  <h3>getValue</h3>
+</a>
+<pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getValue</span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-3"> </span><span class="hl-4">entity</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-4">struct</span><span class="hl-3"> </span><span class="hl-0">VoxelCoord</span><span class="hl-1">)</span>
+</code></pre>
+
+<a href="#getentitieswithvalue-10" id="getentitieswithvalue-10" style="color: inherit; text-decoration: none;">
   <h3>getEntitiesWithValue</h3>
 </a>
 <pre><code class="language-solidity"><span class="hl-0">function</span><span class="hl-3"> </span><span class="hl-5">getEntitiesWithValue</span><span class="hl-1">(</span><span class="hl-4">struct</span><span class="hl-3"> </span><span class="hl-0">VoxelCoord</span><span class="hl-3"> </span><span class="hl-4">coord</span><span class="hl-1">)</span><span class="hl-3"> </span><span class="hl-0">public</span><span class="hl-3"> </span><span class="hl-0">view</span><span class="hl-3"> </span><span class="hl-0">returns</span><span class="hl-3"> </span><span class="hl-1">(</span><span class="hl-2">uint256</span><span class="hl-1">[])</span>
@@ -465,7 +512,7 @@
   <h2>BulkSetStateSystem</h2>
 </a>
 
-<a href="#constructor-10" id="constructor-10" style="color: inherit; text-decoration: none;">
+<a href="#constructor-11" id="constructor-11" style="color: inherit; text-decoration: none;">
   <h3>constructor</h3>
 </a>
 <pre><code class="language-solidity"><span class="hl-0">constructor</span><span class="hl-1">(</span><span class="hl-4">contract</span><span class="hl-3"> </span><span class="hl-0">IWorld</span><span class="hl-3"> </span><span class="hl-4">_world</span><span class="hl-1">,</span><span class="hl-3"> </span><span class="hl-2">address</span><span class="hl-3"> </span><span class="hl-4">_components</span><span class="hl-3">) </span><span class="hl-0">public</span>
@@ -499,7 +546,7 @@
   <h2>ComponentDevSystem</h2>
 </a>
 
-<a href="#constructor-11" id="constructor-11" style="color: inherit; text-decoration: none;">
+<a href="#constructor-12" id="constructor-12" style="color: inherit; text-decoration: none;">
   <h3>constructor</h3>
 </a>
 <pre><code class="language-solidity"><span class="hl-0">constructor</span><span class="hl-1">(</span><span class="hl-4">contract</span><span class="hl-3"> </span><span class="hl-0">IWorld</span><span class="hl-3"> </span><span class="hl-4">_world</span><span class="hl-1">,</span><span class="hl-3"> </span><span class="hl-2">address</span><span class="hl-3"> </span><span class="hl-4">_components</span><span class="hl-3">) </span><span class="hl-0">public</span>
