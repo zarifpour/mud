@@ -17,14 +17,12 @@
 <li><a href="../modules.html">@latticexyz/network</a></li>
 <li><a href="SyncWorkerConfig.html">SyncWorkerConfig</a></li></ul>
 <h1>Type alias SyncWorkerConfig</h1></div>
-<div class="tsd-signature">Sync<wbr/>Worker<wbr/>Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>chainId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>checkpointServiceUrl<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>disableCache<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>fetchSystemCalls<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>initialBlockNumber<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>provider<span class="tsd-signature-symbol">: </span><a href="../interfaces/ProviderConfig.html" class="tsd-signature-type" data-tsd-kind="Interface">ProviderConfig</a><span class="tsd-signature-symbol">; </span>streamServiceUrl<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>worldContract<span class="tsd-signature-symbol">: </span><a href="ContractConfig.html" class="tsd-signature-type" data-tsd-kind="Type alias">ContractConfig</a><span class="tsd-signature-symbol"> }</span></div>
+<div class="tsd-signature">Sync<wbr/>Worker<wbr/>Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>chainId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>disableCache<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>fetchSystemCalls<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">; </span>initialBlockNumber<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">; </span>provider<span class="tsd-signature-symbol">: </span><a href="../interfaces/ProviderConfig.html" class="tsd-signature-type" data-tsd-kind="Interface">ProviderConfig</a><span class="tsd-signature-symbol">; </span>snapshotServiceUrl<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>streamServiceUrl<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">; </span>worldContract<span class="tsd-signature-symbol">: </span><a href="ContractConfig.html" class="tsd-signature-type" data-tsd-kind="Type alias">ContractConfig</a><span class="tsd-signature-symbol"> }</span></div>
 <div class="tsd-type-declaration">
 <h4>Type declaration</h4>
 <ul class="tsd-parameters">
 <li class="tsd-parameter">
 <h5>chain<wbr/>Id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></h5></li>
-<li class="tsd-parameter">
-<h5><code class="tsd-tag ts-flagOptional">Optional</code> checkpoint<wbr/>Service<wbr/>Url<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5></li>
 <li class="tsd-parameter">
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> disable<wbr/>Cache<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span></h5></li>
 <li class="tsd-parameter">
@@ -34,11 +32,13 @@
 <li class="tsd-parameter">
 <h5>provider<span class="tsd-signature-symbol">: </span><a href="../interfaces/ProviderConfig.html" class="tsd-signature-type" data-tsd-kind="Interface">ProviderConfig</a></h5></li>
 <li class="tsd-parameter">
+<h5><code class="tsd-tag ts-flagOptional">Optional</code> snapshot<wbr/>Service<wbr/>Url<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5></li>
+<li class="tsd-parameter">
 <h5><code class="tsd-tag ts-flagOptional">Optional</code> stream<wbr/>Service<wbr/>Url<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span></h5></li>
 <li class="tsd-parameter">
 <h5>world<wbr/>Contract<span class="tsd-signature-symbol">: </span><a href="ContractConfig.html" class="tsd-signature-type" data-tsd-kind="Type alias">ContractConfig</a></h5></li></ul></div><aside class="tsd-sources">
 <ul>
-<li>Defined in <a href="https://github.com/latticexyz/mud/blob/27b08fc/packages/network/src/types.ts#L114">types.ts:114</a></li></ul></aside></div>
+<li>Defined in <a href="https://github.com/latticexyz/mud/blob/e0aa956/packages/network/src/types.ts#L114">network/src/types.ts:114</a></li></ul></aside></div>
 <div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 <div class="tsd-navigation settings">
 <details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
@@ -106,8 +106,7 @@
 <li class="tsd-kind-function"><a href="../functions/createNetwork.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>create<wbr/>Network</a></li>
 <li class="tsd-kind-function"><a href="../functions/createProvider.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>create<wbr/>Provider</a></li>
 <li class="tsd-kind-function"><a href="../functions/createReconnectingProvider.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>create<wbr/>Reconnecting<wbr/>Provider</a></li>
-<li class="tsd-kind-function"><a href="../functions/createRelayerClient.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>create<wbr/>Relayer<wbr/>Client</a></li>
-<li class="tsd-kind-function"><a href="../functions/createRelayerStream.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>create<wbr/>Relayer<wbr/>Stream</a></li>
+<li class="tsd-kind-function"><a href="../functions/createRelayStream.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>create<wbr/>Relay<wbr/>Stream</a></li>
 <li class="tsd-kind-function"><a href="../functions/createSigner.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>create<wbr/>Signer</a></li>
 <li class="tsd-kind-function"><a href="../functions/createSnapshotClient.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>create<wbr/>Snapshot<wbr/>Client</a></li>
 <li class="tsd-kind-function"><a href="../functions/createStreamClient.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>create<wbr/>Stream<wbr/>Client</a></li>
